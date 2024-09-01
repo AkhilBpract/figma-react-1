@@ -26,7 +26,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-const drawerWidth = 220;
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   [`& .${toggleButtonGroupClasses.grouped}`]: {
     margin: theme.spacing(0.5),
@@ -50,7 +49,7 @@ const CustomList = styled(List)(({ theme }) => ({
   width: "100%",
 }));
 
-const SideBar = ({ handleDrawerClose, open }) => {
+const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
   const { settings, onToggleMode } = useSettings();
   const [themeColor, setThemeColor] = useState("dark");
   const handleTheme = (event, newTheme) => {
@@ -63,10 +62,10 @@ const SideBar = ({ handleDrawerClose, open }) => {
     <Drawer
       sx={{
         width: drawerWidth,
-
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
+          boxSizing: "border-box",
           boxShadow: "2px 0px 10px rgba(0, 0, 0, 0.1)",
         },
       }}

@@ -61,18 +61,19 @@ const ThemeContext = ({ children }) => {
 
   const darkTheme = createTheme({
     palette: settings.themeMode === "light" ? palette.light : palette.dark,
-    // typography: {
-    //   fontSize: 10, // Global base font size
-    //   h1: {
-    //     fontSize: "2.5rem", // Custom size for h1
-    //   },
-    //   body1: {
-    //     fontSize: "1rem", // Custom size for body text
-    //   },
-    //   button: {
-    //     fontSize: "0.875rem", // Custom size for button text
-    //   },
-    // },
+    typography: {
+      color: "#F0B64F",
+      // fontSize: 10,
+      // h1: {
+      //   fontSize: "2.5rem",
+      // },
+      // body1: {
+      //   fontSize: "1rem",
+      // },
+      // button: {
+      //   fontSize: "0.875rem",
+      // },
+    },
   });
   return (
     <CustomThemeProvider.Provider value={{ settings, onToggleMode }}>

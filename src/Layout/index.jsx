@@ -8,8 +8,6 @@ import Header from "./header";
 import { Button } from "@mui/material";
 import { useSettings } from "src/theme-provide/theme-context";
 
-const drawerWidth = 220;
-
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme }) => ({
     flexGrow: 1,
@@ -42,7 +40,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-
+const drawerWidth = 220;
 export default function Layout() {
   const theme = useTheme();
 
@@ -57,10 +55,18 @@ export default function Layout() {
   };
 
   return (
-    <Box sx={{ display: "flex", }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-      <SideBar handleDrawerClose={handleDrawerClose} open={open} />
+      <Header
+        open={open}
+        handleDrawerOpen={handleDrawerOpen}
+        drawerWidth={drawerWidth}
+      />
+      <SideBar
+        handleDrawerClose={handleDrawerClose}
+        open={open}
+        drawerWidth={drawerWidth}
+      />
 
       <Main open={open}>
         <DrawerHeader />
