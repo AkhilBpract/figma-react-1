@@ -17,6 +17,7 @@ import { Icon } from "@iconify/react";
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
 } from "@mui/material/ToggleButtonGroup";
+import { Link } from "react-router-dom";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -81,10 +82,10 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
         </DrawerHeader>
         {/* <Divider /> */}
         <CustomList>
-          {top_icons.map(({ name, icon }, index) => {
+          {top_icons.map(({ name, icon, path }, index) => {
             return (
               <ListItem key={name} disablePadding>
-                <ListItemButton>
+                <ListItemButton to={path} component={Link}>
                   <SvgIconStyle src={icon} />
 
                   <ListItemText
@@ -107,9 +108,9 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
           >
             Reports
           </Typography>
-          {bottom_icons.map(({ name, icon }, index) => (
+          {bottom_icons.map(({ name, icon, path }, index) => (
             <ListItem key={name} disablePadding>
-              <ListItemButton>
+              <ListItemButton to={path} component={Link}>
                 <SvgIconStyle src={icon} />
 
                 <ListItemText

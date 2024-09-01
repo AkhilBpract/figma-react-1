@@ -61,18 +61,19 @@ const ThemeContext = ({ children }) => {
 
   const darkTheme = createTheme({
     palette: settings.themeMode === "light" ? palette.light : palette.dark,
-    typography: {
-      color: "#F0B64F",
-      // fontSize: 10,
-      // h1: {
-      //   fontSize: "2.5rem",
-      // },
-      // body1: {
-      //   fontSize: "1rem",
-      // },
-      // button: {
-      //   fontSize: "0.875rem",
-      // },
+    components: {
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            borderRadius: "30px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Global box-shadow for all cards
+            padding: "16px",
+            "&:hover": {
+              boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.15)",
+            },
+          },
+        },
+      },
     },
   });
   return (

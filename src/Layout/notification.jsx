@@ -5,7 +5,6 @@ import React from "react";
 
 const Notification = () => {
   const { palette } = useTheme();
-  console.log(palette);
   const isDark = palette.mode === "dark";
 
   return (

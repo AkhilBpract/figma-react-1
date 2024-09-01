@@ -25,6 +25,8 @@ const AppBar = styled(MuiAppBar, {
     }),
     boxShadow: "none",
     color: "inherit",
+    background:
+      "radial-gradient(circle at top right, #473c28 30%, transparent 60%)", // Radial gradient fixed at the top-right corner
     // padding: "40px",
   };
 });
