@@ -5,6 +5,7 @@ import CarListing from "./car-listing";
 import MyIncome from "./my-income";
 import AddCars from "./add-cars";
 import HireAndCancel from "./hire-and-cancel";
+import ActiveCars from "./active-cars";
 const Index = () => {
   return (
     <Box sx={{ p: 2 }}>
@@ -21,7 +22,9 @@ const Index = () => {
         <Grid item xs={12} md={6}>
           <HireAndCancel />
         </Grid>
-        
+        <Grid item xs={12} md={12}>
+          <ActiveCars />
+        </Grid>
       </Grid>
     </Box>
   );
