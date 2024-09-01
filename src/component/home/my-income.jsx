@@ -39,7 +39,7 @@ const MyIncome = () => {
         link="See all"
         subtitle="My monthly income status"
       />
-      <Divider />
+      <Divider sx={{ borderBottomWidth: 2 }} />
 
       <Stack
         direction="row"
@@ -65,7 +65,7 @@ const MyIncome = () => {
               </Typography>
             </Stack>
             <Typography color="gray" variant="body1">
-              january 2024
+              Today
             </Typography>
           </Stack>
         </Stack>

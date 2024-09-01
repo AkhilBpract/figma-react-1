@@ -8,33 +8,40 @@ import useGetData from "./hooks/use-get-data";
 const list = [
   { name: "Honda", route: "Running", color: "Red", region: "TEST" },
 ];
-const CardHeader = ({ title, icon, expandIcon, link, subtitle }) => {
+const CardHeader = ({
+  title,
+  icon,
+  expandIcon,
+  link,
+  subtitle,
+  subTitleColor,
+}) => {
   const { palette } = useTheme();
 
   return (
     <Stack
-      sx={{ alignItems: "center", justifyContent: "space-between", p: 1 }}
+      sx={{ alignItems: "end", justifyContent: "space-between", p: 1 }}
       direction="row"
     >
-      <Stack sx={{ alignItems: "center", mr: 2 }} direction="row">
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          sx={{ color: "#F0B64F" }}
-        >
-          <Icon style={{ width: 30, height: 30 }} icon={icon} />
-        </IconButton>
-        <Box>
-          <Typography variant="h5">{title}</Typography>
-          <Typography
-            sx={{ display: "flex", justifyContent: "flex-end" }}
-            color="grey"
-            variant="caption"
+      <Stack>
+        <Stack sx={{ alignItems: "center" }} direction="row">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            sx={{ color: "#F0B64F" }}
           >
-            {subtitle}
-          </Typography>
-        </Box>
+            <Icon style={{ width: 30, height: 30 }} icon={icon} />
+          </IconButton>
+          <Typography variant="h5">{title}</Typography>
+        </Stack>
+        <Typography
+          sx={{ display: "flex", justifyContent: "flex-end" }}
+          color={subTitleColor}
+          variant="caption"
+        >
+          {subtitle}
+        </Typography>
       </Stack>
       {Boolean(link) && (
         <Stack>
