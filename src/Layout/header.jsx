@@ -6,36 +6,17 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { styled, useTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
-export const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  variants: [
-    {
-      props: ({ open }) => open,
-      style: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
-        transition: theme.transitions.create(["margin", "width"], {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-      },
-    },
-  ],
-}));
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const Header = ({ open, handleDrawerOpen }) => {
   return (
-    <AppBar
-      sx={{ boxShadow: 0, backgroundColor: "transparent" }}
-      position="fixed"
-      open={open}
+    <Box
+      sx={{
+        marginLeft: open ? `${drawerWidth}px` : "0px",
+        width: `calc(100% - ${drawerWidth}px)`,
+      }}
     >
       <Toolbar>
         <IconButton
@@ -56,7 +37,7 @@ const Header = ({ open, handleDrawerOpen }) => {
           Persistent drawer
         </Typography>
       </Toolbar>
-    </AppBar>
+    </Box>
   );
 };
 

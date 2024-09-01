@@ -5,8 +5,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Outlet } from "react-router";
 import SideBar from "./side-bar";
 import Header from "./header";
+import { Button } from "@mui/material";
+import { useSettings } from "src/theme-provide/theme-context";
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme }) => ({
