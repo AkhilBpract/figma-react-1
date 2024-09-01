@@ -43,12 +43,13 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     },
 }));
 const CustomList = styled(List)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
+  // backgroundColor: theme.palette.background.paper,
   padding: theme.spacing(2),
   borderRadius: "8px",
-  boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
+  // boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
   width: "100%",
 }));
+
 const SideBar = ({ handleDrawerClose, open }) => {
   const { settings, onToggleMode } = useSettings();
   const [themeColor, setThemeColor] = useState("dark");
@@ -66,22 +67,48 @@ const SideBar = ({ handleDrawerClose, open }) => {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          boxSizing: "border-box",
+          boxShadow: "2px 0px 10px rgba(0, 0, 0, 0.1)",
         },
       }}
       variant="persistent"
       anchor="left"
       open={open}
     >
-      <DrawerHeader>
-        <IconButton onClick={handleDrawerClose}>
-          <Icon icon="uiw:left" />
-        </IconButton>
-      </DrawerHeader>
-      {/* <Divider /> */}
-      <CustomList>
-        {top_icons.map(({ name, icon }, index) => {
-          return (
+      <Box>
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            <Icon icon="uiw:left" />
+          </IconButton>
+        </DrawerHeader>
+        {/* <Divider /> */}
+        <CustomList>
+          {top_icons.map(({ name, icon }, index) => {
+            return (
+              <ListItem key={name} disablePadding>
+                <ListItemButton>
+                  <SvgIconStyle src={icon} />
+
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontSize: "12px",
+                      fontWeight: 200,
+                    }}
+                    primary={name}
+                  />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+        </CustomList>
+
+        <CustomList>
+          <Typography
+            sx={{ ml: 2, mt: 5, mb: 1, fontWeight: 600 }}
+            variant="subtitle2"
+          >
+            Reports
+          </Typography>
+          {bottom_icons.map(({ name, icon }, index) => (
             <ListItem key={name} disablePadding>
               <ListItemButton>
                 <SvgIconStyle src={icon} />
@@ -95,90 +122,66 @@ const SideBar = ({ handleDrawerClose, open }) => {
                 />
               </ListItemButton>
             </ListItem>
-          );
-        })}
-      </CustomList>
-
-      <CustomList>
-        <Typography
-          sx={{ ml: 2, mt: 5, mb: 1, fontWeight: 600 }}
-          variant="subtitle2"
-        >
-          Reports
-        </Typography>
-        {bottom_icons.map(({ name, icon }, index) => (
-          <ListItem key={name} disablePadding>
-            <ListItemButton>
-              <SvgIconStyle src={icon} />
-
-              <ListItemText
-                primaryTypographyProps={{
-                  fontSize: "12px",
-                  fontWeight: 200,
-                }}
-                primary={name}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-        <Stack sx={{ ml: 2, mt: 5 }} spacing={2}>
-          <Box>
-            <Button
-              sx={{
-                color: settings.isDark ? "#fff" : "#000",
-                fontSize: "0.75rem",
-                padding: "4px 8px",
-              }}
-              size="small" // Small size from MUI
-              startIcon={<Icon icon="solar:logout-outline" />}
-            >
-              Logout
-            </Button>
-          </Box>
-          <Paper elevation={0}>
-            <StyledToggleButtonGroup
-              size="small"
-              value={themeColor}
-              exclusive
-              onChange={handleTheme}
-              aria-label="text alignment"
-              sx={(theme) => ({
-                display: "flex",
-                border: `1px solid ${theme.palette.divider}`,
-                flexWrap: "wrap",
-                width: "100px",
-                justifyContent: "space-between",
-                borderRadius: "20px",
-              })}
-            >
-              <ToggleButton
+          ))}
+          <Stack sx={{ ml: 2, mt: 5 }} spacing={2}>
+            <Box>
+              <Button
                 sx={{
-                  ...style,
-                  padding: "4px",
-                  width: "30px",
-                  height: "30px",
+                  color: settings.isDark ? "#fff" : "#000",
+                  fontSize: "0.75rem",
+                  padding: "4px 8px",
                 }}
-                value="light"
-                aria-label="left aligned"
+                size="small" // Small size from MUI
+                startIcon={<Icon icon="solar:logout-outline" />}
               >
-                <Icon icon="iconoir:sun-light" />
-              </ToggleButton>
-              <ToggleButton
-                sx={{
-                  ...style,
-                  padding: "4px",
-                  width: "30px",
-                  height: "30px",
-                }}
-                value="dark"
-                aria-label="centered"
+                Logout
+              </Button>
+            </Box>
+            <Paper elevation={0}>
+              <StyledToggleButtonGroup
+                size="small"
+                value={themeColor}
+                exclusive
+                onChange={handleTheme}
+                aria-label="text alignment"
+                sx={(theme) => ({
+                  display: "flex",
+                  border: `1px solid ${theme.palette.divider}`,
+                  flexWrap: "wrap",
+                  width: "100px",
+                  justifyContent: "space-between",
+                  borderRadius: "20px",
+                })}
               >
-                <Icon icon="fontisto:night-clear" />
-              </ToggleButton>
-            </StyledToggleButtonGroup>
-          </Paper>
-        </Stack>
-      </CustomList>
+                <ToggleButton
+                  sx={{
+                    ...style,
+                    padding: "4px",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                  value="light"
+                  aria-label="left aligned"
+                >
+                  <Icon icon="iconoir:sun-light" />
+                </ToggleButton>
+                <ToggleButton
+                  sx={{
+                    ...style,
+                    padding: "4px",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                  value="dark"
+                  aria-label="centered"
+                >
+                  <Icon icon="fontisto:night-clear" />
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+            </Paper>
+          </Stack>
+        </CustomList>
+      </Box>
     </Drawer>
   );
 };

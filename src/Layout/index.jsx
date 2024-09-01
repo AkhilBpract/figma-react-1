@@ -57,7 +57,7 @@ export default function Layout() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", }}>
       <CssBaseline />
       <Header open={open} handleDrawerOpen={handleDrawerOpen} />
       <SideBar handleDrawerClose={handleDrawerClose} open={open} />
