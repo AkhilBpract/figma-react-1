@@ -8,7 +8,7 @@ const useGetCarLocationDetails = () => {
   const fetchData = async () => {
     try {
       const { status, data } = await axios.get(
-        "https://jsonplaceholder.org/comments"
+        "https://jsonplaceholder.typicode.com/users"
       );
       if (status === 200) {
         setData(data.Results.slice(0, 10));
