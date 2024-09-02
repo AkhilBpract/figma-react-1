@@ -7,9 +7,10 @@ import { useTheme } from "@emotion/react";
 
 const CarListing = () => {
   const { palette } = useTheme();
+  const isDark = palette.mode === "dark";
   const data = useGetData();
   return (
-    <Card sx={{ p: 2, height: 340 }}>
+    <Card sx={{ p: 2, height: 300 }}>
       <CardHeader
         title="My Car Listing / Status"
         icon="material-symbols-light:menu"
@@ -20,9 +21,9 @@ const CarListing = () => {
         mt={3}
         spacing={2}
         sx={{
-          maxHeight: "220px",
+          maxHeight: "200px",
           overflowX: "auto",
-          pr: 1,
+          // pr: 1,
           width: "100%",
           flexDirection: "column",
         }}
@@ -36,7 +37,7 @@ const CarListing = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  backgroundColor: palette.grey[900],
+                  backgroundColor: isDark ? "#212325" : "",
                   flexDirection: { xs: "column", sm: "row" },
                   overflowX: "auto",
                   width: "100%",

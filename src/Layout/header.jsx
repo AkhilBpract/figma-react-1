@@ -10,7 +10,7 @@ import { Box, Stack, useMediaQuery } from "@mui/material";
 import SearchBar from "./search-bar";
 import Notification from "./notification";
 import MyProfile from "./my-profile";
-const drawerWidth = 220;
+const drawerWidth = 260;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => {
@@ -25,8 +25,10 @@ const AppBar = styled(MuiAppBar, {
     }),
     boxShadow: "none",
     color: "inherit",
+    marginBottom: "20px",
+
     background:
-      "radial-gradient(circle at top right, #473c28 30%, transparent 60%)", // Radial gradient fixed at the top-right corner
+      "radial-gradient(circle at top right, #F4B652 -60%, transparent 20%)",
     // padding: "40px",
   };
 });
@@ -36,7 +38,8 @@ const CustomToolBar = styled(Toolbar)(({ theme }) => ({
   // maxWidth: "1200px",
   // width: "100%",
   // margin: "0 auto",
-  marginTop: "20px",
+
+  marginTop: "30px",
 }));
 const Header = ({ open, handleDrawerOpen }) => {
   const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
@@ -61,7 +64,7 @@ const Header = ({ open, handleDrawerOpen }) => {
           </IconButton>
           {matches && (
             <Stack>
-              <Typography variant="h5" noWrap component="div">
+              <Typography variant="h4" noWrap component="div">
                 Merchant Dashboard
               </Typography>
               <Typography

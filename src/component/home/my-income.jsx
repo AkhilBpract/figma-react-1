@@ -6,7 +6,7 @@ const MyIncome = () => {
   return (
     <Card
       sx={{
-        height: 340,
+        height: 300,
 
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

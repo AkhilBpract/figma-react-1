@@ -6,8 +6,8 @@ export default function SvgIconStyle({ src, sx }) {
     <Box
       component="span"
       sx={{
-        width: 16,
-        height: 16,
+        width: 22,
+        height: 22,
         display: "inline-block",
         bgcolor: "currentColor",
         mask: `url(${src}) no-repeat center / contain`,

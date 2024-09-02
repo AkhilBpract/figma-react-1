@@ -67,12 +67,19 @@ const ThemeContext = ({ children }) => {
           root: {
             borderRadius: "30px",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Global box-shadow for all cards
-            padding: "16px",
+            padding: "10px",
+            backgroundColor: "#000",
             "&:hover": {
               boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.15)",
             },
           },
         },
+      },
+    },
+    palette: {
+      mode: "dark",
+      primary: {
+        main: "#252421",
       },
     },
   });

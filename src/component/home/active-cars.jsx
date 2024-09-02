@@ -18,10 +18,11 @@ import { Icon } from "@iconify/react";
 import moment from "moment";
 const ActiveCars = () => {
   const { palette } = useTheme();
+  const isDark = palette.mode === "dark";
   const data = useGetCarLocationDetails();
 
   return (
-    <Card sx={{ p: 2, height: 340 }}>
+    <Card sx={{ p: 2, height: 440 }}>
       <CardHeader
         title="My Active Car Location List / Status"
         icon="charm:circle-tick"
@@ -32,7 +33,7 @@ const ActiveCars = () => {
         mt={3}
         spacing={2}
         sx={{
-          maxHeight: "220px",
+          maxHeight: "325px",
           overflowX: "auto",
           pr: 1,
           width: "100%",
@@ -40,7 +41,6 @@ const ActiveCars = () => {
         }}
       >
         {data.map(({ category, date, memo, title_orig, title, hebrew }, i) => {
-          // const carColor = VehicleTypes[0]?.IsPrimary ? "Blue" : "Silver";
           return (
             <Box width="100%">
               <Card
@@ -49,19 +49,19 @@ const ActiveCars = () => {
                   display: "flex",
                   justifyContent: "space-evenly",
                   alignItems: "center",
-                  backgroundColor: palette.grey[900],
+                  backgroundColor: isDark ? "#151718" : "",
                   flexDirection: { xs: "column", sm: "row" },
-                  overflowX: "auto",
                   width: "100%",
-                  whiteSpace: "nowrap",
+                  whiteSpace: "wrap",
                   columnGap: 2,
+                  overflow: "scroll",
                 }}
               >
                 <Details title={category} index={i} caption={title_orig} />
                 <DateDetails title={category} index={i} date={date} />
-                <DateDetails title={category} index={i} date={date} />
+                <DateDetails title={title} index={i} date={date} />
                 <Chip
-                  sx={{ p: 2 }}
+                  sx={{ height: 40, borderRadius: "40px" }}
                   label={
                     <Stack
                       sx={{ alignItems: "center" }}
@@ -71,11 +71,13 @@ const ActiveCars = () => {
                       <Icon
                         height={20}
                         width={20}
-                        icon="mdi:tick-circle-outline"
-                        style={{ color: "green" }}
+                        icon={i % 2 === 0 ? "charm:tick" : "bx:pie-chart"}
+                        style={{ color: i % 2 === 0 ? "#6dce7d" : "#fecb1b" }}
                       />
-                      <Typography sx={{ color: "green" }}>
-                        Active & Hordon Done
+                      <Typography sx={{ color: "#6dce7d" }}>
+                        {i % 2 === 0
+                          ? "Arrived & Handover Done"
+                          : "Running in - Route"}
                       </Typography>
                     </Stack>
                   }

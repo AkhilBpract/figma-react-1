@@ -18,19 +18,23 @@ import ToggleButtonGroup, {
   toggleButtonGroupClasses,
 } from "@mui/material/ToggleButtonGroup";
 import { Link } from "react-router-dom";
-
+import logo from "src/images/logo.png";
 const DrawerHeader = styled("div")(({ theme }) => ({
+  marginTop: "40px",
+  marginLeft:"30px",
+  marginBottom:"30px",
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
 }));
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   [`& .${toggleButtonGroupClasses.grouped}`]: {
     margin: theme.spacing(0.5),
     border: 0,
+
     borderRadius: theme.shape.borderRadius,
     [`&.${toggleButtonGroupClasses.disabled}`]: {
       border: 0,
@@ -67,7 +71,8 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
-          boxShadow: "2px 0px 10px rgba(0, 0, 0, 0.1)",
+          boxShadow: "4px 0px 10px rgba(0, 0, 0, 0.5)",
+          backgroundColor: "#000000",
         },
       }}
       variant="persistent"
@@ -76,6 +81,9 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
     >
       <Box>
         <DrawerHeader>
+          <Box sx={{ p: 2, mr: 2 }}>
+            <img src={logo} style={{ width: 100, height: "auto" }} />
+          </Box>
           <IconButton onClick={handleDrawerClose}>
             <Icon icon="uiw:left" />
           </IconButton>
@@ -90,7 +98,7 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
 
                   <ListItemText
                     primaryTypographyProps={{
-                      fontSize: "12px",
+                      fontSize: "14px",
                       fontWeight: 200,
                     }}
                     primary={name}
@@ -104,7 +112,7 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
         <CustomList>
           <Typography
             sx={{ ml: 2, mt: 5, mb: 1, fontWeight: 600 }}
-            variant="subtitle2"
+            variant="h6"
           >
             Reports
           </Typography>
@@ -137,48 +145,47 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
                 Logout
               </Button>
             </Box>
-            <Paper elevation={0}>
-              <StyledToggleButtonGroup
-                size="small"
-                value={themeColor}
-                exclusive
-                onChange={handleTheme}
-                aria-label="text alignment"
-                sx={(theme) => ({
-                  display: "flex",
-                  border: `1px solid ${theme.palette.divider}`,
-                  flexWrap: "wrap",
-                  width: "100px",
-                  justifyContent: "space-between",
-                  borderRadius: "20px",
-                })}
+
+            <StyledToggleButtonGroup
+              size="small"
+              value={themeColor}
+              exclusive
+              onChange={handleTheme}
+              aria-label="text alignment"
+              sx={(theme) => ({
+                display: "flex",
+                border: `1px solid ${theme.palette.divider}`,
+                flexWrap: "wrap",
+                width: "100px",
+                justifyContent: "space-between",
+                borderRadius: "20px",
+              })}
+            >
+              <ToggleButton
+                sx={{
+                  ...style,
+                  padding: "4px",
+                  width: "30px",
+                  height: "30px",
+                }}
+                value="light"
+                aria-label="left aligned"
               >
-                <ToggleButton
-                  sx={{
-                    ...style,
-                    padding: "4px",
-                    width: "30px",
-                    height: "30px",
-                  }}
-                  value="light"
-                  aria-label="left aligned"
-                >
-                  <Icon icon="iconoir:sun-light" />
-                </ToggleButton>
-                <ToggleButton
-                  sx={{
-                    ...style,
-                    padding: "4px",
-                    width: "30px",
-                    height: "30px",
-                  }}
-                  value="dark"
-                  aria-label="centered"
-                >
-                  <Icon icon="fontisto:night-clear" />
-                </ToggleButton>
-              </StyledToggleButtonGroup>
-            </Paper>
+                <Icon icon="iconoir:sun-light" />
+              </ToggleButton>
+              <ToggleButton
+                sx={{
+                  ...style,
+                  padding: "4px",
+                  width: "30px",
+                  height: "30px",
+                }}
+                value="dark"
+                aria-label="centered"
+              >
+                <Icon icon="fontisto:night-clear" />
+              </ToggleButton>
+            </StyledToggleButtonGroup>
           </Stack>
         </CustomList>
       </Box>

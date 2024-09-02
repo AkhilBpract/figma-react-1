@@ -43,10 +43,10 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-const drawerWidth = 220;
+const drawerWidth = 260;
 export default function Layout() {
   const theme = useTheme();
-  const matches = useMediaQuery("(min-width:800px)");
+  const matches = useMediaQuery("(min-width:900px)");
   const [open, setOpen] = useState(false);
   useEffect(() => {
     setOpen(matches);
@@ -64,18 +64,20 @@ export default function Layout() {
       sx={{
         display: "flex",
         background: {
-          md: "radial-gradient(circle at top right, #473c28 30%, transparent 70%)",
+          md: "radial-gradient(circle at top right, #F4B652 -60%, transparent 40%)",
           xs: "#473c28",
         },
         minHeight: "100vh",
       }}
     >
+      
       <CssBaseline />
       <Header
         open={open}
         handleDrawerOpen={handleDrawerOpen}
         drawerWidth={drawerWidth}
       />
+      
       <SideBar
         handleDrawerClose={handleDrawerClose}
         open={open}

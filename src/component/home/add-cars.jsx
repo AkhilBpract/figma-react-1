@@ -7,7 +7,7 @@ const AddCars = () => {
   return (
     <Card
       sx={{
-        height: 340,
+        height: 300,
         position: "relative",
         overflow: "hidden",
       }}

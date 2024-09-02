@@ -8,7 +8,7 @@ import HireAndCancel from "./hire-and-cancel";
 import ActiveCars from "./active-cars";
 const Index = () => {
   return (
-    <Box sx={{ px: { md: 8, xs: 0 } }}>
+    <Box sx={{ px: { md: 4, xs: 0 } }}>
       <Grid sx={{ mt: 5 }} container spacing={4}>
         <Grid item xs={12} sm={12} md={6}>
           <CarListing />

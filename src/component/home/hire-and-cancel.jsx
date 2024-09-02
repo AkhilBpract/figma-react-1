@@ -29,7 +29,7 @@ const HireAndCancel = () => {
   return (
     <Card
       sx={{
-        height: { md: 340 },
+        height: { md: 300 },
         position: "relative",
         overflow: "hidden",
         padding: 2,
