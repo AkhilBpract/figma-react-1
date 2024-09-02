@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { useLocation } from "react-router-dom";
-import LoadingScreen from "../components/LoadingScreen";
+import LoadingScreen from "./LoadingScreen";
 
 const Loadable = (Component) => (props) => {
   return (
