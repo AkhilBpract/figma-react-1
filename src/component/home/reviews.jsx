@@ -8,6 +8,7 @@ import {
   Paper,
   Rating,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import React from "react";
@@ -16,42 +17,63 @@ import myProfile from "src/images/profile-image.jpg";
 import Profile2 from "src/images/images.jpeg";
 import Profile1 from "src/images/avatart_1.jpg";
 import useGetUsers from "./hooks/use-get-users";
+import vector from "src/images/Vector.png";
 
 const Reviews = () => {
-  return (
-    <Card>
-      <Grid spacing={3} container>
-        <Grid
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "column",
-            alignItems: "center",
-            p: 4,
-          }}
-          item
-          xs={12}
-          sm={3}
-        >
-          <TotalReviews />
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <UserCard id={1} profile={myProfile} />
-        </Grid>
+  const matches = useMediaQuery("(min-width:900px)");
 
-        <Grid item xs={12} sm={3}>
-          <UserCard id={2} profile={Profile1} />
+  return (
+    <>
+      <Card sx={{ position: "relative" }}>
+        <Grid spacing={3} container>
+          <Grid
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: "column",
+              alignItems: "center",
+              p: 4,
+            }}
+            item
+            xs={12}
+            sm={3}
+          >
+            <TotalReviews />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <UserCard id={1} profile={myProfile} />
+          </Grid>
+
+          <Grid item xs={12} sm={3}>
+            <UserCard id={2} profile={Profile1} />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <UserCard id={3} profile={Profile2} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={3}>
-          <UserCard id={3} profile={Profile2} />
-        </Grid>
-      </Grid>
-    </Card>
+        {matches && (
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "85px",
+              left: "120px",
+              zIndex: 1,
+            }}
+          >
+            <img
+              src={vector}
+              alt="Vector of image"
+              style={{ width: "160px", height: "auto", borderRadius: "8px" }}
+            />
+          </Box>
+        )}
+      </Card>
+    </>
   );
 };
 const TotalReviews = () => {
   const data = useGetUsers();
-  console.log(data);
+
   return (
     <>
       <Box sx={{ display: "flex", p: 1, mb: 3 }}>
@@ -75,7 +97,7 @@ const TotalReviews = () => {
           </Typography>
         </Box>
       </Box>
-      <Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <AvatarGroup total={data.length}>
           <Avatar alt="Remy Sharp" src={myProfile} />
           <Avatar alt="Travis Howard" src={Profile1} />
