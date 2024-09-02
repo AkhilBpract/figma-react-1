@@ -70,21 +70,20 @@ export default function Layout() {
         minHeight: "100vh",
       }}
     >
-      
       <CssBaseline />
       <Header
         open={open}
         handleDrawerOpen={handleDrawerOpen}
         drawerWidth={drawerWidth}
       />
-      
+
       <SideBar
         handleDrawerClose={handleDrawerClose}
         open={open}
         drawerWidth={drawerWidth}
       />
 
-      <Main open={open}>
+      <Main sx={{ backgroundColo: "#252421" }} open={open}>
         <DrawerHeader />
         <Outlet />
       </Main>

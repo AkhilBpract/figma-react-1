@@ -72,7 +72,7 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
           width: drawerWidth,
           boxSizing: "border-box",
           boxShadow: "4px 0px 10px rgba(0, 0, 0, 0.5)",
-          backgroundColor: "#000000",
+          backgroundColor: "#131311",
         },
       }}
       variant="persistent"
