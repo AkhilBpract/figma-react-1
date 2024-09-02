@@ -2,14 +2,24 @@ import React from "react";
 import MyCar from "./card-header";
 import CardHeader from "./card-header";
 import useGetData from "./hooks/use-get-data";
-import { Card, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  Chip,
+  Divider,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useTheme } from "@emotion/react";
 import useGetCarLocationDetails from "./hooks/use-get-car-location-details";
-
+import { capitalCase, constantCase } from "change-case";
+import { Icon } from "@iconify/react";
+import moment from "moment";
 const ActiveCars = () => {
   const { palette } = useTheme();
   const data = useGetCarLocationDetails();
-  console.log(data);
+
   return (
     <Card sx={{ p: 2, height: 340 }}>
       <CardHeader
@@ -23,63 +33,117 @@ const ActiveCars = () => {
         spacing={2}
         sx={{
           maxHeight: "220px",
-          overflowY: "auto",
+          overflowX: "auto",
           pr: 1,
+          width: "100%",
+          flexDirection: "column",
         }}
       >
-        {data.map(({ category, date, title_orig, title, hebrew }, i) => {
+        {data.map(({ category, date, memo, title_orig, title, hebrew }, i) => {
           // const carColor = VehicleTypes[0]?.IsPrimary ? "Blue" : "Silver";
           return (
-            <Card
-              key={i}
-              sx={{
-                display: "flex",
-                alignItems: "baseline",
-                backgroundColor: palette.grey[900],
-                columnGap: 2,
-                minHeight: 60,
-                overflowX: "auto",
-              }}
-            >
-              <Stack
-                sx={{ alignItems: "flex-end" }}
-                spacing={2}
-                direction="row"
-              >
-                <Typography variant="subtitle2">
-                  {category.slice(0, 5)}...
-                </Typography>
-                <Typography color="text.secondary" variant="caption">
-                  {title_orig}
-                </Typography>
-              </Stack>
-
-              <Typography
+            <Box width="100%">
+              <Card
+                key={i}
                 sx={{
-                  fontWeight: 500,
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                  backgroundColor: palette.grey[900],
+                  flexDirection: { xs: "column", sm: "row" },
+                  overflowX: "auto",
+                  width: "100%",
+                  whiteSpace: "nowrap",
+                  columnGap: 2,
                 }}
-                variant="caption"
-                gutterBottom
               >
-                {hebrew}
-              </Typography>
-              <Typography color="text.secondary" variant="caption">
-                {title}
-              </Typography>
-              <Typography
-                color="text.secondary"
-                variant="overline"
-                gutterBottom
-                sx={{ display: "block", fontSize: "10px" }}
-              >
-                REG No : H {title} Dubai
-              </Typography>
-            </Card>
+                <Details title={category} index={i} caption={title_orig} />
+                <DateDetails title={category} index={i} date={date} />
+                <DateDetails title={category} index={i} date={date} />
+                <Chip
+                  sx={{ p: 2 }}
+                  label={
+                    <Stack
+                      sx={{ alignItems: "center" }}
+                      spacing={2}
+                      direction="row"
+                    >
+                      <Icon
+                        height={20}
+                        width={20}
+                        icon="mdi:tick-circle-outline"
+                        style={{ color: "green" }}
+                      />
+                      <Typography sx={{ color: "green" }}>
+                        Active & Hordon Done
+                      </Typography>
+                    </Stack>
+                  }
+                />
+                <Link color="#F0B64F">More</Link>
+              </Card>
+            </Box>
           );
         })}
       </Stack>
     </Card>
   );
 };
-
+const Details = ({ title, index, caption }) => {
+  return (
+    <Box sx={{ display: "flex", columnGap: 1 }}>
+      <Typography sx={{ fontWeight: 900 }} variant="subtitle2">
+        {index + 1}
+      </Typography>
+      <Box>
+        <Typography variant="subtitle2">
+          {capitalCase(title).slice(0, 10)}{" "}
+          <span style={{ color: "grey", marginLeft: 1, fontSize: "11px" }}>
+            {caption}
+          </span>
+        </Typography>
+        <Typography color="text.secondary" variant="caption">
+          {caption}
+        </Typography>
+      </Box>
+    </Box>
+  );
+};
+const DateDetails = ({ title, index, date }) => {
+  return (
+    <Box sx={{ display: "flex", columnGap: 1 }}>
+      <Box>
+        <Icon
+          height={25}
+          width={25}
+          icon="subway:location"
+          style={{ color: "gray" }}
+        />
+      </Box>
+      <Box>
+        <Typography color="text.secondary" variant="subtitle2">
+          {capitalCase(title).slice(0, 10)} & {capitalCase(title).slice(0, 10)}
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            borderColor: "divider",
+            borderRadius: 2,
+            color: "text.secondary",
+            columnGap: 1,
+          }}
+        >
+          <Typography color="text.secondary" variant="subtitle2">
+            {moment(date).format("DD MMM YYYY")}
+          </Typography>
+          <Divider orientation="vertical" flexItem />
+          <Typography color="text.secondary" variant="caption">
+            {moment(date).format("DD MMM YYYY")}
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 export default ActiveCars;

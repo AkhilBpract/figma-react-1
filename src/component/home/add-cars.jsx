@@ -27,7 +27,7 @@ const AddCars = () => {
         <img
           src={Car}
           style={{
-            width: 200,
+            width: 180,
             position: "absolute",
             transform: "translateX(33%)",
             zIndex: 1,
@@ -37,7 +37,7 @@ const AddCars = () => {
         <img
           src={Audi}
           style={{
-            width: 200,
+            width: 180,
             position: "absolute",
             transform: "scaleX(-1) translateX(50%)",
 

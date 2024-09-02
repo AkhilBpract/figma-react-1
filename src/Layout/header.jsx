@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { styled, useTheme } from "@mui/material/styles";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
 import SearchBar from "./search-bar";
 import Notification from "./notification";
 import MyProfile from "./my-profile";
@@ -39,8 +39,10 @@ const CustomToolBar = styled(Toolbar)(({ theme }) => ({
   marginTop: "20px",
 }));
 const Header = ({ open, handleDrawerOpen }) => {
+  const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
+
   return (
-    <AppBar onClick={handleDrawerOpen} position="fixed" open={open}>
+    <AppBar position="fixed" open={open}>
       <CustomToolBar>
         <Stack spacing={2} direction="row">
           <IconButton
@@ -57,18 +59,20 @@ const Header = ({ open, handleDrawerOpen }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Stack>
-            <Typography variant="h5" noWrap component="div">
-              Merchant Dashboard
-            </Typography>
-            <Typography
-              sx={{ fontStyle: "italic" }}
-              color="#F0B64F"
-              variant="caption"
-            >
-              Updated on 08 Jan 2024
-            </Typography>
-          </Stack>
+          {matches && (
+            <Stack>
+              <Typography variant="h5" noWrap component="div">
+                Merchant Dashboard
+              </Typography>
+              <Typography
+                sx={{ fontStyle: "italic" }}
+                color="#F0B64F"
+                variant="caption"
+              >
+                Updated on 08 Jan 2024
+              </Typography>
+            </Stack>
+          )}
         </Stack>
         <Stack direction="row" spacing={2}>
           <SearchBar />

@@ -12,7 +12,6 @@ const useGetCarLocationDetails = () => {
         "https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month=x&ss=on&mf=on&c=on&geo=geoname&geonameid=3448439&m=50&s=on"
       );
       if (status === 200) {
-        console.log(data);
         setData(data.items.slice(0, 10));
       }
     } catch (err) {

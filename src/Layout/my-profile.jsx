@@ -9,6 +9,7 @@ import {
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import React from "react";
 import { useState } from "react";
@@ -16,6 +17,7 @@ import myProfile from "src/images/profile-image.jpg";
 
 const menu = [{ name: "Home" }, { name: "Dashboard" }];
 const MyProfile = () => {
+  const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -37,14 +39,20 @@ const MyProfile = () => {
         onClick={handleOpen}
       >
         <Avatar alt="Profile" src={myProfile} />
-        <Typography variant="subtitle2">Name</Typography>
-        <IconButton>
-          <Icon
-            icon={
-              Boolean(open) ? "icon-park-outline:up" : "icon-park-outline:down"
-            }
-          />
-        </IconButton>
+        {matches && (
+          <>
+            <Typography variant="subtitle2">Name</Typography>
+            <IconButton>
+              <Icon
+                icon={
+                  Boolean(open)
+                    ? "icon-park-outline:up"
+                    : "icon-park-outline:down"
+                }
+              />
+            </IconButton>
+          </>
+        )}
       </Box>
       <Popover
         open={Boolean(open)}
@@ -54,7 +62,6 @@ const MyProfile = () => {
           vertical: "bottom",
           horizontal: "center",
         }}
-       
       >
         {menu.map(({ name }, i) => (
           <MenuItem onClick={handleClose}>{name}</MenuItem>

@@ -25,10 +25,7 @@ const data = [
 const HireAndCancel = () => {
   const matches = useMediaQuery("(min-width:800px)");
   const theme = useTheme();
-  const screen = useMemo(() => {
-    return matches;
-  }, [matches]);
-  console.log(screen);
+
   return (
     <Card
       sx={{
@@ -69,12 +66,12 @@ const HireAndCancel = () => {
                 paddingAngle: 5,
                 cornerRadius: 5,
                 startAngle: -160,
-                cx: screen ? 80 : 20,
-                cy: screen ? 80 : 60,
+                cx: matches ? 80 : 20,
+                cy: matches ? 80 : 60,
               },
             ]}
             height={160}
-            width={screen ? 160 : 120}
+            width={matches ? 160 : 120}
           />
         </Grid>
         <Grid
