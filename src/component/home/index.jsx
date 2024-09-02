@@ -8,18 +8,18 @@ import HireAndCancel from "./hire-and-cancel";
 import ActiveCars from "./active-cars";
 const Index = () => {
   return (
-    <Box sx={{ p: 2 }}>
-      <Grid sx={{ mt: 5 }} container spacing={2}>
-        <Grid item xs={12} md={6}>
+    <Box sx={{ px: { md: 8, xs: 0 } }}>
+      <Grid sx={{ mt: 5 }} container spacing={4}>
+        <Grid item xs={12} sm={12} md={6}>
           <CarListing />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <MyIncome />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <AddCars />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <HireAndCancel />
         </Grid>
         <Grid item xs={12} md={12}>

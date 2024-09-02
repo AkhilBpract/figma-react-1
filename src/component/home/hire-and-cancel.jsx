@@ -2,12 +2,15 @@ import {
   Box,
   Card,
   Divider,
+  Grid,
   ListItem,
   ListItemText,
   Stack,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
 import CardHeader from "./card-header";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { Icon } from "@iconify/react";
@@ -20,13 +23,19 @@ const data = [
 ];
 
 const HireAndCancel = () => {
+  const matches = useMediaQuery("(min-width:800px)");
+  const theme = useTheme();
+  const screen = useMemo(() => {
+    return matches;
+  }, [matches]);
+  console.log(screen);
   return (
     <Card
       sx={{
-        height: 340,
+        height: { md: 340 },
         position: "relative",
         overflow: "hidden",
-        padding: 2, // Added padding
+        padding: 2,
       }}
     >
       <CardHeader
@@ -39,46 +48,70 @@ const HireAndCancel = () => {
       />
       <Divider sx={{ borderBottomWidth: 2 }} />
 
-      <Stack direction="row" sx={{ justifyContent: "space-between", mt: 2 }}>
-        {/* PieChart Section */}
-        <Box
+      <Grid container>
+        <Grid
           sx={{
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
+            justifyContent: "center",
           }}
+          item
+          xs={12}
+          sm={12}
+          md={6}
         >
           <PieChart
             series={[
               {
                 data: data,
                 innerRadius: 30,
-                outerRadius: 80,
+                outerRadius: 70,
                 paddingAngle: 5,
                 cornerRadius: 5,
                 startAngle: -160,
-                cx: 150,
-                cy: 150,
+                cx: screen ? 80 : 20,
+                cy: screen ? 80 : 60,
               },
             ]}
-            height={250}
-            width={250}
+            height={160}
+            width={screen ? 160 : 120}
           />
-        </Box>
-
-        {/* Legend Section */}
-        <Stack spacing={1} sx={{ justifyContent: "center", pr: 3 }}>
-          {data.slice(0, -1).map(({ name, color }) => (
-            <ListItem key={name} sx={{ padding: 0 }}>
-              <Icon
-                icon="ic:round-square"
-                style={{ color: color, marginRight: "5px", fontSize: 24 }}
-              />
-              <ListItemText primary={name} />
-            </ListItem>
-          ))}
-        </Stack>
-      </Stack>
+        </Grid>
+        <Grid
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          item
+          xs={12}
+          sm={12}
+          md={6}
+        >
+          <Stack
+            spacing={1}
+            sx={{
+              [theme.breakpoints.down("sm")]: {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              },
+              pr: 3,
+              mt: 2,
+            }}
+          >
+            {data.slice(0, -1).map(({ name, color }) => (
+              <ListItem key={name} sx={{ padding: 0 }}>
+                <Icon
+                  icon="ic:round-square"
+                  style={{ color: color, marginRight: "5px", fontSize: 24 }}
+                />
+                <ListItemText primary={name} />
+              </ListItem>
+            ))}
+          </Stack>
+        </Grid>
+      </Grid>
     </Card>
   );
 };

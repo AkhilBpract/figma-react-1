@@ -6,7 +6,7 @@ const useGetData = () => {
   const [data, setData] = useState([]);
   const fetchData = async () => {
     try {
-      const { status, data } = await axios.get(
+      const { status, data } = await axiosInstance.get(
         "https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json"
       );
       if (status === 200) {

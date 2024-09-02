@@ -9,6 +9,7 @@ import useGetCarLocationDetails from "./hooks/use-get-car-location-details";
 const ActiveCars = () => {
   const { palette } = useTheme();
   const data = useGetCarLocationDetails();
+  console.log(data);
   return (
     <Card sx={{ p: 2, height: 340 }}>
       <CardHeader
@@ -26,11 +27,11 @@ const ActiveCars = () => {
           pr: 1,
         }}
       >
-        {data.map(({ Mfr_Name, Mfr_CommonName, VehicleTypes, Mfr_ID }) => {
-          const carColor = VehicleTypes[0]?.IsPrimary ? "Blue" : "Silver";
+        {data.map(({ category, date, title_orig, title, hebrew }, i) => {
+          // const carColor = VehicleTypes[0]?.IsPrimary ? "Blue" : "Silver";
           return (
             <Card
-              key={Mfr_ID}
+              key={i}
               sx={{
                 display: "flex",
                 alignItems: "baseline",
@@ -46,27 +47,24 @@ const ActiveCars = () => {
                 direction="row"
               >
                 <Typography variant="subtitle2">
-                  {Mfr_Name.slice(0, 5)}...
+                  {category.slice(0, 5)}...
                 </Typography>
                 <Typography color="text.secondary" variant="caption">
-                  {Mfr_CommonName}
+                  {title_orig}
                 </Typography>
               </Stack>
 
               <Typography
                 sx={{
-                  color: VehicleTypes[0]?.IsPrimary ? "green" : "red",
                   fontWeight: 500,
                 }}
                 variant="caption"
                 gutterBottom
               >
-                {VehicleTypes[0]?.IsPrimary
-                  ? "Running - in route"
-                  : "idle - not in route"}
+                {hebrew}
               </Typography>
               <Typography color="text.secondary" variant="caption">
-                {carColor} Color
+                {title}
               </Typography>
               <Typography
                 color="text.secondary"
@@ -74,7 +72,7 @@ const ActiveCars = () => {
                 gutterBottom
                 sx={{ display: "block", fontSize: "10px" }}
               >
-                REG No : H {Mfr_ID} Dubai
+                REG No : H {title} Dubai
               </Typography>
             </Card>
           );

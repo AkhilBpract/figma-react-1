@@ -19,6 +19,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${drawerWidth}px`,
+
     variants: [
       {
         props: ({ open }) => open,
@@ -62,9 +63,11 @@ export default function Layout() {
     <Box
       sx={{
         display: "flex",
-        background:
-          "radial-gradient(circle at top right, #473c28 30%, transparent 70%)", // Radial gradient fixed at the top-right corner
-        minHeight: "100vh", // Ensure it covers the full height of the viewport
+        background: {
+          md: "radial-gradient(circle at top right, #473c28 30%, transparent 70%)",
+          xs: "#473c28",
+        },
+        minHeight: "100vh",
       }}
     >
       <CssBaseline />
