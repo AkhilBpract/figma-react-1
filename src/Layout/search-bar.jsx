@@ -14,7 +14,8 @@ const SearchBar = () => {
         display: "flex",
         alignItems: "center",
         width: 260,
-        borderRadius: 8,
+        borderRadius: 5,
+        backgroundColor:"#000"
       }}
     >
       <IconButton

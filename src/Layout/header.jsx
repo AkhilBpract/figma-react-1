@@ -28,7 +28,7 @@ const AppBar = styled(MuiAppBar, {
     marginBottom: "20px",
 
     background:
-      "radial-gradient(circle at top right, #F4B652 -60%, transparent 20%)",
+      "radial-gradient(circle at top right, #252421 -60%, transparent 20%)",
     // padding: "40px",
   };
 });

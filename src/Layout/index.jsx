@@ -64,9 +64,14 @@ export default function Layout() {
       sx={{
         display: "flex",
         background: {
-          md: "radial-gradient(circle at top right, #F4B652 -60%, transparent 40%)",
+          // md: "radial-gradient(circle at top right, #F4B652 -60%, transparent 40%)",
+          md: "url('/image/app-bg-image.png')",
           xs: "#473c28",
         },
+
+        backgroundSize: "contain",
+        backgroundPosition: "top right",
+        backgroundRepeat: "no-repeat",
         minHeight: "100vh",
       }}
     >
