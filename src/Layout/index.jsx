@@ -3,13 +3,13 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Outlet } from "react-router";
-import SideBar from "./side-bar";
+import { SideBar, SideBarResponsive } from "./side-bar";
 import Header from "./header";
 import { Button, useMediaQuery } from "@mui/material";
 import { useSettings } from "src/theme-provide/theme-context";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import appImage from "src/images/app-bg-image.png";
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme }) => ({
     flexGrow: 1,
@@ -63,31 +63,49 @@ export default function Layout() {
     <Box
       sx={{
         display: "flex",
-        background: {
-          // md: "radial-gradient(circle at top right, #F4B652 -60%, transparent 40%)",
-          md: "url('/image/app-bg-image.png')",
-          xs: "#473c28",
-        },
-
+        position: "relative",
         backgroundSize: "contain",
-        backgroundPosition: "top right",
         backgroundRepeat: "no-repeat",
         minHeight: "100vh",
       }}
     >
+      <img
+        style={{
+          zIndex: -1,
+          width: "1000px",
+          height: "1000px",
+          opacity: "0.85",
+          position: "absolute",
+          top: 0,
+          right: 0,
+        }}
+        src={appImage}
+      />
       <CssBaseline />
       <Header
         open={open}
         handleDrawerOpen={handleDrawerOpen}
         drawerWidth={drawerWidth}
       />
-
+      {/* {matches ? (
+        <SideBar
+          handleDrawerClose={handleDrawerClose}
+          open={open}
+          drawerWidth={drawerWidth}
+        />
+      ) : (
+        <SideBarResponsive
+          handleDrawerClose={handleDrawerClose}
+          open={open}
+          drawerWidth={drawerWidth}
+          handleDrawerOpen={handleDrawerOpen}
+        />
+      )} */}
       <SideBar
         handleDrawerClose={handleDrawerClose}
         open={open}
         drawerWidth={drawerWidth}
       />
-
       <Main sx={{ backgroundColo: "#252421" }} open={open}>
         <DrawerHeader />
         <Outlet />
@@ -95,3 +113,4 @@ export default function Layout() {
     </Box>
   );
 }
+
