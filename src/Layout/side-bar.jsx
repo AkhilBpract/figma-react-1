@@ -17,12 +17,12 @@ import { Icon } from "@iconify/react";
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
 } from "@mui/material/ToggleButtonGroup";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "src/images/logo.png";
 const DrawerHeader = styled("div")(({ theme }) => ({
   marginTop: "40px",
-  marginLeft:"30px",
-  marginBottom:"30px",
+  marginLeft: "30px",
+  marginBottom: "30px",
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
@@ -63,6 +63,8 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
     });
     onToggleMode();
   };
+  const location = useLocation();
+
   return (
     <Drawer
       sx={{
@@ -91,15 +93,33 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
         {/* <Divider /> */}
         <CustomList>
           {top_icons.map(({ name, icon, path }, index) => {
+            const isSelected = location.pathname === path;
             return (
               <ListItem key={name} disablePadding>
-                <ListItemButton to={path} component={Link}>
-                  <SvgIconStyle src={icon} />
+                <ListItemButton
+                  sx={{
+                    backgroundColor: isSelected ? "#F0B64F" : "transparent",
+                    borderRadius: "30px",
+                    "&:hover": {
+                      backgroundColor: "#F0B64F",
+                      "& .MuiTypography-root": {
+                        color: "#000",
+                      },
+                    },
+                  }}
+                  to={path}
+                  component={Link}
+                >
+                  <SvgIconStyle
+                    src={icon}
+                    sx={{ color: isSelected ? "#000" : "" }}
+                  />
 
                   <ListItemText
                     primaryTypographyProps={{
                       fontSize: "14px",
                       fontWeight: 200,
+                      color: isSelected ? "#000" : "inherit",
                     }}
                     primary={name}
                   />
@@ -139,7 +159,7 @@ const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
                   fontSize: "0.75rem",
                   padding: "4px 8px",
                 }}
-                size="small" // Small size from MUI
+                size="small"
                 startIcon={<Icon icon="solar:logout-outline" />}
               >
                 Logout
