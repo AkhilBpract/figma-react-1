@@ -68,7 +68,7 @@ const ThemeContext = ({ children }) => {
             borderRadius: "30px",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Global box-shadow for all cards
             padding: "10px",
-            backgroundColor: "#000",
+            backgroundColor: settings.themeMode === "dark" ? "#000" : "#4c4c4c",
             "&:hover": {
               boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.15)",
             },
@@ -76,12 +76,12 @@ const ThemeContext = ({ children }) => {
         },
       },
     },
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#252421",
-      },
-    },
+    // palette: {
+    //   mode: "dark",
+    //   primary: {
+    //     main: "#252421",
+    //   },
+    // },
   });
   return (
     <CustomThemeProvider.Provider value={{ settings, onToggleMode }}>

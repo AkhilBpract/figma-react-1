@@ -49,7 +49,7 @@ const ActiveCars = () => {
                   display: "flex",
                   justifyContent: "space-evenly",
                   alignItems: "center",
-                  backgroundColor: isDark ? "#212325" : "",
+                  backgroundColor: isDark ? "#212325" : "#333333",
                   flexDirection: { xs: "column", sm: "row" },
                   width: "100%",
                   whiteSpace: "wrap",
