@@ -122,7 +122,13 @@ const UserCard = ({ id, profile, rating = 5 }) => {
   return (
     <>
       <Box sx={{ p: 1, py: 3, mt: 2 }}>
-        <Paper sx={{ p: 1, borderRadius: "16px", backgroundColor: "#fff" }}>
+        <Paper
+          sx={{
+            p: 1,
+            borderRadius: "16px",
+            backgroundColor: isDark ? "#fff" : "#191919",
+          }}
+        >
           <Typography
             sx={{ fontSize: "11px", color: isDark ? "#000" : "#fff" }}
             variant="caption"

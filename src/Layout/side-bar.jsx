@@ -195,6 +195,8 @@ const ListItemSideBar = ({ handleDrawerClose }) => {
 };
 
 export const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
+  const { palette } = useTheme();
+  const isDark = palette.mode === "dark";
   return (
     <>
       <Drawer
@@ -205,7 +207,7 @@ export const SideBar = ({ handleDrawerClose, open, drawerWidth }) => {
             width: drawerWidth,
             boxSizing: "border-box",
             boxShadow: "4px 0px 10px rgba(0, 0, 0, 0.5)",
-            backgroundColor: "#131311",
+            backgroundColor: isDark ? "#131311" : "#cccccc",
           },
         }}
         variant="persistent"
@@ -249,4 +251,3 @@ const style = {
 
 // F0B64F
 // export default SideBar;
-

@@ -37,7 +37,7 @@ const CarListing = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  backgroundColor: isDark ? "#212325" : "",
+                  backgroundColor: isDark ? "#212325" : "#333333",
                   flexDirection: { xs: "column", sm: "row" },
                   overflowX: "auto",
                   width: "100%",
