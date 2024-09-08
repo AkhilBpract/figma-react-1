@@ -41,18 +41,16 @@ const ThemeContext = ({ children }) => {
       text: {
         primary: "#000",
       },
-      background: {
-        paper: "#fff",
-        default: "#fff",
+    
+      primary: {
         main: "#f7f7f7",
       },
     },
     dark: {
       mode: "dark",
       text: { primary: "#fff" },
-      background: {
-        paper: "#000",
-        default: "#000",
+      
+      primary: {
         main: "#252421",
       },
     },
